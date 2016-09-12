@@ -1,16 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Web.Mvc;
+using GigHub.Models;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System;
 
 namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ApplicationDbContext _context;
+
+
+        public HomeController()
+        {
+            this._context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var upcomingsGigs = _context.Gigs
+                .Include(g => g.Artist)
+                .Where(g => g.DatetTime > DateTime.Now);
+
+            return View(upcomingsGigs);
         }
 
         public ActionResult About()

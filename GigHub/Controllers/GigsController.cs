@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System;
 
 namespace GigHub.Controllers
 {
@@ -14,6 +15,18 @@ namespace GigHub.Controllers
         public GigsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs
+                .Where(g => g.ArtistId == userId && g.DatetTime >= DateTime.Now)
+                .Include(g => g.Genre)
+                .ToList();
+
+            return View(gigs);
         }
 
 

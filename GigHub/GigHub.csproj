@@ -210,9 +210,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\GenreDto.cs" />
+    <Compile Include="Controllers\Api\UserDto.cs" />
+    <Compile Include="Controllers\Api\GigDto.cs" />
     <Compile Include="Controllers\Api\GigsController.cs" />
-    <Compile Include="Controllers\AttendancesController.cs" />
-    <Compile Include="Controllers\FollowingController.cs" />
+    <Compile Include="Controllers\Api\AttendancesController.cs" />
+    <Compile Include="Controllers\Api\FollowingController.cs" />
+    <Compile Include="Controllers\Api\NotificationDto.cs" />
+    <Compile Include="Controllers\Api\NotificationsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -261,6 +266,18 @@
     <Compile Include="Migrations\201609152005151_AddIsCanceledToGig.Designer.cs">
       <DependentUpon>201609152005151_AddIsCanceledToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609161512127_AddNotification.cs" />
+    <Compile Include="Migrations\201609161512127_AddNotification.Designer.cs">
+      <DependentUpon>201609161512127_AddNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609161752214_DropAttendeeTable.cs" />
+    <Compile Include="Migrations\201609161752214_DropAttendeeTable.Designer.cs">
+      <DependentUpon>201609161752214_DropAttendeeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609161756285_RecreateAttendeeTable.cs" />
+    <Compile Include="Migrations\201609161756285_RecreateAttendeeTable.Designer.cs">
+      <DependentUpon>201609161756285_RecreateAttendeeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
@@ -274,9 +291,12 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\SendCodeViewModel.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Models\VerifyCodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -294,6 +314,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -393,6 +414,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609152005151_AddIsCanceledToGig.resx">
       <DependentUpon>201609152005151_AddIsCanceledToGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609161512127_AddNotification.resx">
+      <DependentUpon>201609161512127_AddNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609161752214_DropAttendeeTable.resx">
+      <DependentUpon>201609161752214_DropAttendeeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609161756285_RecreateAttendeeTable.resx">
+      <DependentUpon>201609161756285_RecreateAttendeeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

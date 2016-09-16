@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 
-namespace GigHub.Controllers
+namespace GigHub.Controllers.Api
 {
     public class FollowingController : ApiController
     {

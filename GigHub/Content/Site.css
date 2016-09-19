@@ -95,7 +95,7 @@ span.field-validation-error {
         position: absolute;
         top: 8px;
         right: -1px;
-        background:#a80a0a;
+        background: #a80a0a;
     }
 
 .navbar-inverse .navbar-toggle,
@@ -204,3 +204,21 @@ h6,
         .gigs > li:hover .actions {
             display: block;
         }
+
+.popover-notifications .popover-content {
+    padding: 0px;
+}
+
+    .popover-notifications .popover-content ul.notifications {
+        list-style: none;
+        padding-left: 0px;
+    }
+
+        .popover-notifications .popover-content ul.notifications > li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+
+            .popover-notifications .popover-content ul.notifications > li:last-child {
+                border-bottom: none;
+            }

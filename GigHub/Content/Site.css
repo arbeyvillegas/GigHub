@@ -143,6 +143,8 @@ h6,
         border-color: #2196f3;
         box-shadow: none;
         -webkit-box-shadow: none;
+        -webkit-transition: none;
+        transition: none;
     }
 
 .btn {
@@ -211,8 +213,6 @@ h6,
         }
 
 
-
-
 .popover-notifications .popover-content {
     padding: 0px;
 }
@@ -227,6 +227,7 @@ h6,
             padding: 10px;
         }
 
+
             .popover-notifications .popover-content ul.notifications > li:last-child {
                 border-bottom: none;
             }
@@ -234,3 +235,7 @@ h6,
         .popover-notifications .popover-content ul.notifications .highlight {
             font-weight: bold;
         }
+
+#searchGigs {
+    width: 300px;
+}

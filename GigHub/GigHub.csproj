@@ -308,7 +308,7 @@
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\FutureTime.cs" />
     <Compile Include="ViewModels\GigFormViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\GigsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />

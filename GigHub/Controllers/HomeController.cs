@@ -31,6 +31,8 @@ namespace GigHub.Controllers
                             g.Genre.Name.Contains(query) ||
                             g.Venue.Contains(query));
 
+
+
             var viewModel = new GigsViewModel()
             {
                 UpcomingGigs = upcomingsGigs,

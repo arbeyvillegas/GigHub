@@ -46,6 +46,7 @@ namespace GigHub.Models
                 .WithMany(u => u.UserNotifications)
                 .WillCascadeOnDelete(false);
 
+
             base.OnModelCreating(modelBuilder);
         }
     }

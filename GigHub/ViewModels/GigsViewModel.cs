@@ -16,5 +16,6 @@ namespace GigHub.ViewModels
         public IEnumerable<Gig> UpcomingGigs { get; set; }
         public string Heading { get; set; }
         public string SearchTerm { get; set; }
+        public ILookup<int, Attendance> Atendances { get; internal set; }
     }
 }

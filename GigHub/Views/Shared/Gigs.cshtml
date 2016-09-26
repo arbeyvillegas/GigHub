@@ -61,18 +61,7 @@
 {
     <script>
         $(document).ready(function () {
-            $(".js-toogle-attendance").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
-                .done(function () {
-                    button
-                        .removeClass("btn-default")
-                        .addClass("btn-info").text("Going");
-                })
-                .fail(function () {
-                    alert("Something failed!");
-                })
-            });
+            GigsController.init();
 
             $(".js-toogle-follow").click(function (e) {
                 var button = $(e.target);

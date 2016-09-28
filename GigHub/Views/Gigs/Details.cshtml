@@ -7,20 +7,24 @@
     @Model.ArtistName
     @if (User.Identity.IsAuthenticated)
     {
-        if (Model.IsFollowing)
-        {
-            <button class="btn btn-info">Following</button>
-        }
-        else
-        {
-            <button class="btn btn-default">Follow</button>
-        }
+        <button class="btn @((Model.IsFollowing)?"btn-info":"btn-default") js-toogle-follow" data-user-id="@(Model.ArtistId)">
+            @((Model.IsFollowing) ? "Following" : "Follow")
+        </button>
     }
 </h2>
 <div>Performing at @Model.Venue on @Model.DateTime.ToString("d MMM") at @Model.DateTime.ToString("HH:mm")</div>
 @if (User.Identity.IsAuthenticated && Model.IsAttending)
 {
     <div>You are going to this event</div>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            DetailsController.init();
+        });
+    </script>
 }
 
 

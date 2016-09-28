@@ -67,6 +67,7 @@ namespace GigHub.Controllers
                 Id = gig.Id,
                 Venue = gig.Venue,
                 DateTime = gig.DatetTime,
+                ArtistId = gig.ArtistId,
                 ArtistName = gig.Artist.Name
             };
 

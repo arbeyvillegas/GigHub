@@ -6,6 +6,7 @@ using System.Web.Http;
 
 namespace GigHub.Controllers.Api
 {
+    [Authorize]
     public class FollowingController : ApiController
     {
         private ApplicationDbContext _context;
@@ -32,6 +33,25 @@ namespace GigHub.Controllers.Api
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult StopFollow(string id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var following = _context
+                .Followings
+                .SingleOrDefault(f => f.FollowerId == userId && f.FolloweeId == id);
+
+            if(following != null)
+            {
+                _context.Followings.Remove(following);
+
+                _context.SaveChanges();
+            }
+
+            return Ok(id);
         }
     }
 }

@@ -2,7 +2,7 @@
     var button;
 
     var init = function (container) {
-        $(container).on("click",".js-toggle-attendance",toggleAttendance);
+        $(container).on("click",".js-toogle-attendance",toggleAttendance);
     };
 
     var toggleAttendance = function (e) {
@@ -18,7 +18,7 @@
 
     var done = function () {
         var text = (button.text() == "Going") ? "Going?" : "Going";
-        button.toggleClass("btn-default").toggleClass("btn-default").text(text);
+        button.toggleClass("btn-default").toggleClass("btn-info").text(text);
     };
 
     var fail = function () {

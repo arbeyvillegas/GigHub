@@ -1,4 +1,4 @@
-﻿@model GigHub.ViewModels.GigsViewModel
+﻿@model GigHub.Core.ViewModels.GigsViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -46,7 +46,14 @@
                 </span>
                 @if (Model.ShowActions && !gig.IsCanceled)
                 {
-                    <button data-gig-id="@gig.Id" class="btn @(Model.Atendances.Contains(gig.Id)?"btn-info":"btn-default") pull-right js-toogle-attendance">Going?</button>
+                    if (Model.Atendances.Contains(gig.Id))
+                    {
+                        <button data-gig-id="@gig.Id" class="btn btn-info pull-right js-toogle-attendance">Going</button>
+                    }
+                    else
+                    {
+                        <button data-gig-id="@gig.Id" class="btn btn-default pull-right js-toogle-attendance">Going?</button>
+                    }
                 }
             </div>
         </li>

@@ -7,7 +7,7 @@
 
     var deleteAttendance = function (gigId, done, fail) {
         $.ajax({
-            url: "api/attendances/" + button.attr("data-gig-id"),
+            url: "api/attendances/" + gigId,
             method: "DELETE"
         }).done(done).fail(fail);
     };

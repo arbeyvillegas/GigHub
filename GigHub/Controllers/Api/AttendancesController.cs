@@ -1,8 +1,9 @@
-﻿using GigHub.Dtos;
-using GigHub.Models;
+﻿using GigHub.Core.Dtos;
+using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
+using GigHub.Persistence;
 
 namespace GigHub.Controllers.Api
 {
@@ -14,7 +15,7 @@ namespace GigHub.Controllers.Api
 
         public AttendancesController()
         {
-            _context = new ApplicationDbContext();
+            _context = new Persistence.ApplicationDbContext();
         }
 
 

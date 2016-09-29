@@ -1,4 +1,5 @@
-﻿using GigHub.Models;
+﻿using GigHub.Core.Models;
+using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
@@ -11,8 +12,6 @@ namespace GigHub.Controllers.Api
     {
 
         private ApplicationDbContext _context;
-
-
 
         public GigsController()
         {

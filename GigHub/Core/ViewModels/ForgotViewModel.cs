@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GigHub.Core.Models
+namespace GigHub.Core.ViewModels
 {
     public class ForgotViewModel
     {

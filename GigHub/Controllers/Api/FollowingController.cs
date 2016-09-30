@@ -1,27 +1,26 @@
-﻿using GigHub.Core.Dtos;
+﻿using GigHub.Core;
+using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
-using System.Linq;
 using System.Web.Http;
-using GigHub.Persistence;
 
 namespace GigHub.Controllers.Api
 {
     [Authorize]
     public class FollowingController : ApiController
     {
-        private ApplicationDbContext _context;
+        IUnitOfWork _unitOfWork;
 
-        public FollowingController()
+        public FollowingController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         public IHttpActionResult Follow(FollowingDto dto)
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Followings.Any(f => f.FolloweeId == dto.FolloweeId && f.FollowerId == userId))
+            if (_unitOfWork.Followings.Exists(userId, dto.FolloweeId))
                 return BadRequest("Following already exists.");
 
             var following = new Following()
@@ -30,8 +29,8 @@ namespace GigHub.Controllers.Api
                 FolloweeId = dto.FolloweeId
             };
 
-            _context.Followings.Add(following);
-            _context.SaveChanges();
+            _unitOfWork.Followings.Add(following);
+            _unitOfWork.Complete();
 
             return Ok();
         }
@@ -41,15 +40,13 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var following = _context
-                .Followings
-                .SingleOrDefault(f => f.FollowerId == userId && f.FolloweeId == id);
+            var following = _unitOfWork.Followings.Get(userId, id);
 
-            if(following != null)
+            if (following != null)
             {
-                _context.Followings.Remove(following);
+                _unitOfWork.Followings.Remove(following);
 
-                _context.SaveChanges();
+                _unitOfWork.Complete();
             }
 
             return Ok(id);

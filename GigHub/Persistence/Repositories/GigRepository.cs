@@ -10,7 +10,6 @@ namespace GigHub.Persistence.Repositories
 {
     public class GigRepository : IGigRepository
     {
-
         private readonly ApplicationDbContext _context;
 
         public GigRepository(ApplicationDbContext context)
@@ -18,8 +17,7 @@ namespace GigHub.Persistence.Repositories
             _context = context;
         }
 
-
-        public IEnumerable<Gig> GetGisUserAttending(string userId)
+        public IEnumerable<Gig> GetGigsUserAttending(string userId)
         {
             return _context.Attendences
                 .Where(a => a.AttendeeId == userId)
@@ -28,7 +26,6 @@ namespace GigHub.Persistence.Repositories
                 .Include(g => g.Genre)
                 .ToList();
         }
-
 
         public IEnumerable<Gig> GetGigsByUserIdWithGenre(string userId)
         {
@@ -45,8 +42,26 @@ namespace GigHub.Persistence.Repositories
             return _context.Gigs
                             .Include(g => g.Artist)
                             .Include(g => g.Attendancees)
+                            .Include(g => g.Attendancees.Select(a=>a.Attendee))
                             .Include(g => g.Artist.Followers)
-                            .Single(g => g.Id == id);
+                            .SingleOrDefault(g => g.Id == id);
+        }
+
+        public IEnumerable<Gig> GetUpcomingGigs(string query)
+        {
+            var upcomingsGigs = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => g.DatetTime > DateTime.Now && g.IsCanceled == false);
+
+
+            if (!String.IsNullOrWhiteSpace(query))
+                upcomingsGigs = upcomingsGigs
+                    .Where(g => g.Artist.Name.Contains(query) ||
+                            g.Genre.Name.Contains(query) ||
+                            g.Venue.Contains(query));
+
+            return upcomingsGigs;
         }
 
         public void Add(Gig gig)
@@ -54,7 +69,7 @@ namespace GigHub.Persistence.Repositories
             _context.Gigs.Add(gig);
         }
 
-        public void Update(int id,string userId,Gig newGig)
+        public void Update(int id, string userId, Gig newGig)
         {
             var gig = _context.Gigs
                 .Include(g => g.Attendancees.Select(a => a.Attendee))

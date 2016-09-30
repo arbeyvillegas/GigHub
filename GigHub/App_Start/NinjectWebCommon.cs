@@ -10,7 +10,6 @@ namespace GigHub.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Persistence;
     using Ninject.Extensions.Conventions;
 
     public static class NinjectWebCommon 

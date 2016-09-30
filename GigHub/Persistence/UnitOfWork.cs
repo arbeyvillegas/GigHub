@@ -6,9 +6,11 @@ namespace GigHub.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public  IGigRepository Gigs { get; private set; }
-
-        public  IGenreRepository Genres { get; private set; }
+        public IGigRepository Gigs { get; private set; }
+        public IGenreRepository Genres { get; private set; }
+        public IAttendanceRepository Attendances { get; private set; }
+        public INotificationRepository Notificacions { get; private set; }
+        public IFollowingRepository Followings { get; private set; }
 
         ApplicationDbContext _context;
 
@@ -18,11 +20,14 @@ namespace GigHub.Persistence
 
             Gigs = new GigRepository(context);
             Genres = new GenreRepository(context);
+            Attendances = new AttendanceRepository(context);
+            Notificacions = new NotificationRepository(context);
+            Followings = new FollowingRepository(context);
         }
 
-        public void Complete()
+        public int Complete()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
     }
 }

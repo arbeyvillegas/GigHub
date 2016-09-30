@@ -6,7 +6,10 @@ namespace GigHub.Core
     {
         IGenreRepository Genres { get; }
         IGigRepository Gigs { get; }
+        IAttendanceRepository Attendances { get; }
+        INotificationRepository Notificacions { get; }
+        IFollowingRepository Followings { get; }
 
-        void Complete();
+        int Complete();
     }
 }

@@ -22,23 +22,22 @@ namespace GigHub.Controllers.Api
 
             var gig = _unitOfWork.Gigs.GetGigById(id);
 
+            if (gig == null || gig.IsCanceled)
+                return NotFound();
+
             if (gig.ArtistId != userId)
                 return Unauthorized();
 
-            if (gig != null && !gig.IsCanceled)
-            {
+            gig.Cancel();
 
-                gig.Cancel();
+            _unitOfWork.Complete();
 
-                _unitOfWork.Complete();
-
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
+            return Ok();
         }
 
+        public string GetUserId()
+        {
+            return User.Identity.GetUserId();
+        }
     }
 }

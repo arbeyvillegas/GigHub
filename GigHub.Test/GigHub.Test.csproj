@@ -92,8 +92,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\Api\AttendancesControllerTests.cs" />
     <Compile Include="Controllers\Api\GigsControllerTests.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />
+    <Compile Include="Extensions\MockDbSetExtensions.cs" />
     <Compile Include="Persistence\Repositories\GigRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

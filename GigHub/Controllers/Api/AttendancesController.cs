@@ -12,7 +12,7 @@ namespace GigHub.Controllers.Api
     [Authorize]
     public class AttendancesController : ApiController
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public AttendancesController(IUnitOfWork unitOfWork)
         {
